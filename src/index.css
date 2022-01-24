@@ -1,13 +1,19 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* grid boxes */
+.item {
+  margin: 0.6rem auto !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* date picker */
+.date-wrapper {
+  margin: 0.4rem auto !important;
+}
+
+/* dropdown input field */
+.select {
+  width: 30%;
+}
+
+/* alert boxes for empty input fields */
+.alert-title {
+  width: 20%;
 }

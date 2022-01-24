@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Container, Grid } from '@material-ui/core';
+
+import { useSelector } from 'react-redux';
+
+import DialogComponent from './components/DialogComponent';
+import TableComponent from './components/TableComponent';
 
 function App() {
+
+  const reduxState = useSelector((state) => state);
+  console.log(reduxState);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container maxWidth="lg" minWidth="sm">
+        <Grid container>
+          <Grid item className="item">
+
+            <h1>Manage Users</h1>
+
+            {/* Dialog box for submitting form */}
+            <DialogComponent></DialogComponent>
+
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item className="item">
+
+            {/* Table Component for showing all the user data from redux state */}
+            <TableComponent></TableComponent>
+
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }
