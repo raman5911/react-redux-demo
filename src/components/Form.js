@@ -18,8 +18,12 @@ import {
   InputLabel,
   MenuItem,
   Checkbox,
+  Snackbar
 } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
+
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 // MUI date picker
 import {
@@ -40,6 +44,24 @@ import {
 } from "../validation";
 
 function Form() {
+
+  //code for displaying a notification on successfull form submission
+  const [openSnackbarState, setOpenSnackbarState] = useState(false);
+
+  const handleClick = () => {
+    setOpenSnackbarState(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbarState(false);
+  };
+
+  //Getting state from redux store
+
   const dispatch = useDispatch();
   const newUser = useSelector((state) => state.usersReducer.newUser);
 
@@ -66,6 +88,8 @@ function Form() {
     location: false,
     checkbox: false,
   });
+
+  //handling on change events on input fields
 
   function handleChange(e) {
     const inputFieldName = e.target.name;
@@ -193,6 +217,7 @@ function Form() {
       console.log(value);
       dispatch(postUser(value));
       console.log(newUser);
+      handleClick();
     }
   }
 
@@ -397,6 +422,27 @@ function Form() {
           </Grid>
         </Grid>
       </form>
+
+      {/* Snackbar Notification for successfull form submission */}
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        open={openSnackbarState}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="Form Submitted Successfully!"
+        action={
+          <React.Fragment>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+      />
+
     </Container>
   );
 }
